@@ -1,0 +1,31 @@
+name: Build ReaPack Index
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-down: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 'node'
+
+    - name: Install reapack-index
+      run: npm install -g reapack-index
+
+    - name: Run indexer
+      run: reapack-index --amend --commit
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
