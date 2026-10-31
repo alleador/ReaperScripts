@@ -21,6 +21,11 @@ jobs:
     - name: Install reapack-index
       run: gem install reapack-index
 
+    - name: Configure Git
+      run: |
+        git config --global user.name "alleador"
+        git config --global user.email "alleador@mail.ru"
+
     - name: Run indexer
       run: reapack-index --amend --commit
 
