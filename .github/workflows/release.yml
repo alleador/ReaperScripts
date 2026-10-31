@@ -16,13 +16,11 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 'node'
-
-    - name: Install reapack-index
-      run: npm install -g reapack-index
+        node-version: 'lts/*'
 
     - name: Run indexer
-      run: reapack-index --amend --commit
+      run: |
+        npx reapack-index --amend --commit
 
     - name: Push changes
       uses: ad-m/github-push-action@master
