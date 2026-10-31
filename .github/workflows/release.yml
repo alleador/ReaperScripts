@@ -18,9 +18,11 @@ jobs:
       with:
         node-version: 'lts/*'
 
+    - name: Install indexer locally
+      run: npm install reapack-index
+
     - name: Run indexer
-      run: |
-        npx reapack-index --amend --commit
+      run: npx reapack-index --amend --commit
 
     - name: Push changes
       uses: ad-m/github-push-action@master
