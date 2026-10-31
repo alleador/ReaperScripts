@@ -13,16 +13,16 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
       with:
-        node-version: 'lts/*'
+        ruby-version: '3.2'
 
-    - name: Install indexer locally
-      run: npm install reapack-index
+    - name: Install reapack-index
+      run: gem install reapack-index
 
     - name: Run indexer
-      run: npx reapack-index --amend --commit
+      run: reapack-index --amend --commit
 
     - name: Push changes
       uses: ad-m/github-push-action@master
